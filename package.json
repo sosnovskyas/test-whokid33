@@ -9,7 +9,7 @@
   "author": "Sosnovsky Alexey <sosnovsky.as@gmail.com> (http://sosnovskyas.ru/)",
   "license": "GPL-3.0",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "github:gulpjs/gulp#4.0",
     "webpack": "^1.12.14"
   }
 }
