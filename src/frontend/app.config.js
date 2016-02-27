@@ -21,8 +21,13 @@ module.exports = function (ngApp) {
             })
             .state('modal.modal1', {
                 url: "/modal1",
-                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
-                    $uibModal
+                onEnter: ['$stateParams', '$state', function ($stateParams, $state, $uibModal) {
+                    $('.ui .modal')
+                        .modal()
+                    ;
+
+                    console.log('modal');
+                    /*$uibModal
                         // for open
                         .open({
                             template: require('./templates/pages/modal1.html'),
@@ -41,7 +46,7 @@ module.exports = function (ngApp) {
                         // after close
                         .result.finally(function () {
                             $state.go('^');
-                        });
+                        });*/
                 }]
             })
         ;

@@ -58,6 +58,9 @@ config.webpack = {
             test: /\.js$/,
             include: config.src.base,
             loader: 'babel?presets[]=es2015'
+        }, {
+            test: /\.html$/,
+            loader: 'raw'
         }]
     }
 };
@@ -68,6 +71,16 @@ config.webpack = {
  *       TASKS
  *
  ********************/
+gulp.task('serve', function (cb) {
+    if (isDevelopment) {
+        browserSync.init({
+            server: './build/dev/'
+        });
+
+    } else {
+        cb();
+    }
+});
 
 gulp.task('styles', function () {
     return gulp.src(config.src.styles)
@@ -89,8 +102,11 @@ gulp.task('clean', function () {
 
 gulp.task('js', function (cb) {
     return gulp.src('./src/frontend/app.js')
-        .pipe(webpackStream(config.webpack, null))
+        .pipe(webpackStream(config.webpack, null, browserSync.reload))
         .pipe(gulp.dest(config.dest.js))
+        .on('data', function () {
+            cb();
+        })
         ;
 });
 
@@ -102,16 +118,7 @@ gulp.task('build',
     )
 );
 
-gulp.task('serve', function (cb) {
-    if (isDevelopment) {
-        browserSync.init({
-            server: './build/dev/'
-        });
 
-    } else {
-        cb();
-    }
-});
 
 gulp.task('watch', function () {
         gulp.watch(config.src.styles, gulp.series('styles', browserSync.reload));
