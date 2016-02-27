@@ -21,5 +21,5 @@ npm install
 ```
 - запуск сборки
 ```
-gulp
+npm start
 ```

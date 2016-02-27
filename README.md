@@ -21,5 +21,5 @@ npm install
 ```
 - runing build
 ```
-gulp
+npm start
 ```
