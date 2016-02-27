@@ -4,12 +4,29 @@
   "description": "test quest",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "./node_modules/.bin/gulp",
+    "build": "NODE_ENV=production ./node_modules/.bin/gulp",
+    "start": "NODE_ENV=development ./node_modules/.bin/gulp"
   },
   "author": "Sosnovsky Alexey <sosnovsky.as@gmail.com> (http://sosnovskyas.ru/)",
   "license": "GPL-3.0",
   "devDependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "webpack": "^1.12.14"
+    "gulp-if": "^2.0.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "webpack": "^1.12.14",
+    "webpack-stream": "^3.1.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.2.18"
   }
 }
