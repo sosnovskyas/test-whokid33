@@ -4,7 +4,6 @@ const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync').create();
 const webpackStream = require('webpack-stream');
-const webpack = webpackStream.webpack;
 const del = require('del');
 
 
@@ -21,8 +20,12 @@ const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'developm
 
 /* destinations */
 config.dest = {
-    dev: './build/dev/',
-    prod: './build/prod/'
+    base: './build/'
+};
+
+config.dest = {
+    dev: config.dest.base + 'dev/',
+    prod: config.dest.base + 'prod/'
 };
 
 config.dest = {
@@ -45,13 +48,13 @@ config.src = {
         config.src.base + 'Semantic-UI-CSS-master/**/*'
 
     ],
-    js: config.src.base + '**/*.js'
+    js: config.src.base + 'app.js'
 };
 
 config.webpack = {
     output: {
         publicPath: isDevelopment ? config.dest.dev : config.dest.prod,
-        filename: '[name].js'
+        filename: 'main.js'
     },
     watch: isDevelopment,
     devtool: isDevelopment ? 'cheap-module-inline-source-map' : null,
@@ -67,6 +70,7 @@ config.webpack = {
     }
 };
 
+config.serve = './build/dev/';
 
 /********************
  *
@@ -76,7 +80,7 @@ config.webpack = {
 gulp.task('serve', function (cb) {
     if (isDevelopment) {
         browserSync.init({
-            server: './build/dev/'
+            server: config.serve
         });
 
     } else {
@@ -98,12 +102,13 @@ gulp.task('assets', function () {
     }
 );
 
-gulp.task('clean', function () {
-    return del(isDevelopment ? config.dest.dev : config.dest.prod);
+gulp.task('clean', function (cb) {
+    del.sync('./build');
+    cb();
 });
 
 gulp.task('js', function (cb) {
-    return gulp.src('./src/frontend/app.js')
+    return gulp.src(config.src.js)
         .pipe(webpackStream(config.webpack, null, browserSync.reload))
         .pipe(gulp.dest(config.dest.js))
         .on('data', function () {
@@ -113,13 +118,15 @@ gulp.task('js', function (cb) {
 });
 
 gulp.task('build',
-    gulp.parallel(
-        'assets',
-        'styles',
-        'js'
+    gulp.series(
+        'clean',
+        gulp.parallel(
+            'assets',
+            'styles',
+            'js'
+        )
     )
 );
-
 
 
 gulp.task('watch', function () {
