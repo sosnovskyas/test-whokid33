@@ -9,8 +9,18 @@
 <body>
 
 <div ng-app="ngApp">
-    <h1>test</h1>
+    <div class="ui menu">
+        <a class="item"
+           ui-sref-active="active"
+           ui-sref="home">home</a>
+        <a class="item"
+           ui-sref-active="active"
+           ui-sref="modal"
+                >modals</a>
+    </div>
     <ui-view></ui-view>
+</div>
+
 
 </div>
 
