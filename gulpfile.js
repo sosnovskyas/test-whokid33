@@ -41,7 +41,7 @@ config.src = {
         config.src.base + 'styles.scss'
     ],
     assets: [
-        config.src.base + 'index.html'
+        config.src.base + '**/*.html'
     ],
     js: config.src.base + '**/*.js'
 };
