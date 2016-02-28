@@ -1,4 +1,3 @@
-//import jquery from 'jquery';
 import semantic from './Semantic-UI-CSS-master/semantic.js';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';

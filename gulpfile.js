@@ -77,6 +77,7 @@ config.serve = './build/dev/';
  *       TASKS
  *
  ********************/
+
 gulp.task('serve', function (cb) {
     if (isDevelopment) {
         browserSync.init({
@@ -127,7 +128,6 @@ gulp.task('build',
         )
     )
 );
-
 
 gulp.task('watch', function () {
         gulp.watch(config.src.styles, gulp.series('styles', browserSync.reload));

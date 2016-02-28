@@ -15,7 +15,7 @@ module.exports = function (ngApp) {
                 url: "/home",
                 templateUrl: './templates/pages/home.html'
             })
-
+            // home subroute
             .state('home.modal', {
                 url: "/:id",
                 onEnter: ['$stateParams', '$state', function ($stateParams, $state) {
