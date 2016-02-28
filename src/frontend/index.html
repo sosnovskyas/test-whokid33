@@ -8,39 +8,28 @@
 </head>
 <body>
 
-<div ng-app="ngApp">
+<div ng-app="ngApp" >
     <div class="ui menu">
         <a class="item"
            ui-sref-active="active"
            ui-sref="home">home</a>
         <a class="item"
            ui-sref-active="active"
-           ui-sref="modal"
-                >modals</a>
+           ui-sref="help"
+                >help</a>
     </div>
-    <ui-view></ui-view>
-</div>
-
-
-</div>
-
-<div class="ui modal">
-    <i class="close icon"></i>
-
-    <div class="header">
-        Modal Title
+    <div class="ui container">
+        <ui-view></ui-view>
     </div>
-    <div class="image content">
-        <div class="image">
-            An image can appear on left or an icon
+    <div class="ui modal"
+         >
+        <div class="header">My modal</div>
+        <div class="content">
+            <p>{{content}}</p>
         </div>
-        <div class="description">
-            A description can appear on the right
+        <div class="actions">
+            <div class="ui ok button">Ok</div>
         </div>
-    </div>
-    <div class="actions">
-        <div class="ui button">Cancel</div>
-        <div class="ui button">OK</div>
     </div>
 </div>
 
