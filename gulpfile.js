@@ -6,7 +6,6 @@ const browserSync = require('browser-sync').create();
 const webpackStream = require('webpack-stream');
 const del = require('del');
 
-
 // configuration and exports paths in 'config' variable
 let config = {};
 
